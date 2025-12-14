@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "icon": "/icons/sun-fog.svg",
+      "title": "Nature",
+      "subtitle": "Hiking Mountains"
+    },
+    {
+      "icon": "/icons/buildings.svg",
+      "title": "Beach & Island",
+      "subtitle": "Snorkeling Surfing"
+    },
+    {
+      "icon": "/icons/house-2 2.svg",
+      "title": "Culture",
+      "subtitle": "Historic Sites"
+    },
+    {
+      "icon": "/icons/building-4.svg",
+      "title": "Sunset & Scenic",
+      "subtitle": "Viewpoints"
+    },
+    {
+      "icon": "/icons/airplane.svg",
+      "title": "City & Urban",
+      "subtitle": "City tours"
+    },
+    {
+      "icon": "/icons/cup.svg",
+      "title": "Family Trip",
+      "subtitle": "Family journeys"
+    },
+    {
+      "icon": "/icons/sun-fog.svg",
+      "title": "Open Trip",
+      "subtitle": "Join Group trips"
+    },
+    {
+      "icon": "/icons/element-equal.svg",
+      "title": "Backpacker",
+      "subtitle": "Flexible trips"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "data": {
+    "solutions": [
+      {
+        "title": "Travel Packages",
+        "url": "/"
+      },
+      {
+        "title": "Open Trip",
+        "url": "/"
+      },
+      {
+        "title": "Private Trip",
+        "url": "/"
+      },
+      {
+        "title": "Custom Itenerary",
+        "url": "/"
+      },
+      {
+        "title": "Travel Insurance",
+        "url": "/"
+      }
+    ],
+    "product": [
+      {
+        "title": "Featured Trips",
+        "url": "/"
+      },
+      {
+        "title": "Browse Categories",
+        "url": "/"
+      },
+      {
+        "title": "Travel Categories",
+        "url": "/"
+      },
+      {
+        "title": "Special Deals",
+        "url": "/"
+      },
+      {
+        "title": "Popular Experience",
+        "url": "/"
+      }
+    ],
+    "company": [
+      {
+        "title": "About Us",
+        "url": "/"
+      },
+      {
+        "title": "Our Investors",
+        "url": "/"
+      },
+      {
+        "title": "Missions 2025",
+        "url": "/"
+      },
+      {
+        "title": "Careers",
+        "url": "/"
+      },
+      {
+        "title": "Media Press",
+        "url": "/"
+      }
+    ]
+  }
+}
