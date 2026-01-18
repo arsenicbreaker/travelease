@@ -11,9 +11,15 @@ import ListingShowcase from "@/components/molecules/listing/listing-showcase";
 import PhotoGallery from "./photo-gallery";
 import BookingSection from "./booking-section";
 import CustomerReviews from "./customer-reviews";
+import { useGetDetailListingQuery } from "@/services/listing.service";
+import { useMemo } from "react";
+import { Listing } from "@/interfaces/listing";
 
 function Detail({ params }: { params: { id: string } }) {
-  console.log(params);
+  const { data } = useGetDetailListingQuery(params.id);
+
+  const listing: Listing | undefined = useMemo(() => data?.data, [data]);
+
   return (
     <main>
       <section
@@ -23,7 +29,9 @@ function Detail({ params }: { params: { id: string } }) {
         <div className="px-10 xl:container xl:mx-auto">
           <Breadcrumbs />
 
-          <PhotoGallery />
+        {listing?.attachments && (
+            <PhotoGallery photos={listing.attachments} />
+          )}
 
           <div className="mt-[30px] grid grid-cols-3 xl:grid-cols-4 gap-x-5">
             <div className="col-span-2 xl:col-span-3 space-y-5 pr-[50px]">
@@ -31,7 +39,7 @@ function Detail({ params }: { params: { id: string } }) {
 
               <div className="flex items-center justify-between">
                 <h1 className="font-bold text-[32px] leading-[48px] text-secondary max-w-[300px]">
-                  Bromo River Side
+                  {listing?.title}
                 </h1>
 
                 <div className="flex flex-col items-end text-end">
@@ -51,7 +59,7 @@ function Detail({ params }: { params: { id: string } }) {
                     width={0}
                     className="w-5 h-5 mr-1"
                   />
-                  Malang, Jawa Timur
+                  {listing?.address}
                 </div>
                 <div className="flex items-center font-semibold leading-6">
                   <Image
@@ -61,7 +69,7 @@ function Detail({ params }: { params: { id: string } }) {
                     width={0}
                     className="w-5 h-5 mr-1"
                   />
-                  209 trip
+                  {listing?.sqft} trip
                 </div>
                 <div className="flex items-center font-semibold leading-6">
                   <Image
@@ -71,7 +79,7 @@ function Detail({ params }: { params: { id: string } }) {
                     width={0}
                     className="w-5 h-5 mr-1"
                   />
-                  Max 10 people
+                  Max {listing?.max_person} people
                 </div>
                 <div className="flex items-center font-semibold leading-6">
                   <Image
@@ -81,12 +89,14 @@ function Detail({ params }: { params: { id: string } }) {
                     width={0}
                     className="w-5 h-5 mr-1"
                   />
-                  Free wifi
+                  Free wifi up to {listing?.wifi_speed} gbps
                 </div>
               </div>
             </div>
             <div className="bg-white rounded-[20px] px-5 py-4 space-y-5">
-              <span className="font-bold text-lg leading-[27px]">Tour Guide</span>
+              <span className="font-bold text-lg leading-[27px]">
+                Tour Guide
+              </span>
               <div className="flex items-center space-x-3">
                 <Image
                   src="/images/avatar-review.svg"
@@ -123,9 +133,7 @@ function Detail({ params }: { params: { id: string } }) {
           <Title
             section="detail"
             title="About Trip"
-            subtitle="Bromo River Side offers an unforgettable travel experience surrounded by the natural beauty of East Java. This open trip is designed for travelers who want to explore breathtaking landscapes, enjoy peaceful river views, and experience local culture in a relaxed and enjoyable way.
-
-Guided by experienced locals, this trip ensures comfort, safety, and memorable moments throughout the journey."
+            subtitle={listing?.description}
           />
           <div className="grid grid-cols-2 gap-5">
             <CardFacility
@@ -152,7 +160,13 @@ Guided by experienced locals, this trip ensures comfort, safety, and memorable m
           <Map />
           <CustomerReviews />
         </div>
-        <BookingSection id={params?.id} />
+        {listing && (
+          <BookingSection
+            id={listing?.id}
+            slug={listing?.slug}
+            price={listing?.price_per_day}
+          />
+        )}
       </section>
 
       <ListingShowcase

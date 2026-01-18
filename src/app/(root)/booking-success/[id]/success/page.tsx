@@ -1,11 +1,21 @@
+"use client";
 import { Badge } from "@/components/atomics/badge";
 import { Button } from "@/components/atomics/button";
 import { Separator } from "@/components/atomics/separator";
 import Title from "@/components/atomics/title";
+import { Transaction } from "@/interfaces/transaction";
+import { useGetDetailTransactionQuery } from "@/services/transaction.service";
 import Image from "next/image";
 import Link from "next/link";
+import { useMemo } from "react";
 
-function BookingSuccess() {
+function BookingSuccess({ params }: { params: { id: string } }) {
+
+    const { data } = useGetDetailTransactionQuery(params?.id);
+
+    const booking: Transaction = useMemo(() => data?.data, [data]);
+
+
   return (
     <main>
       <section
@@ -33,9 +43,9 @@ function BookingSuccess() {
           />
           <div className="space-y-2.5">
             <h1 className="font-bold text-[22px] leading-[33px] text-secondary">
-              Bromo River Side
+              {booking?.listing?.title}
             </h1>
-            <Badge variant="secondary">Pending</Badge>
+            <Badge variant="secondary">{booking?.status}</Badge>
           </div>
         </div>
 
@@ -48,7 +58,7 @@ function BookingSuccess() {
               width={0}
               className="w-5 h-5 mr-1"
             />
-            Malang, Jawa Timur
+            {booking?.listing.address}
           </div>
           <div className="flex items-center font-semibold leading-6">
             <Image
@@ -58,7 +68,7 @@ function BookingSuccess() {
               width={0}
               className="w-5 h-5 mr-1"
             />
-            209 Trip
+            {booking?.listing?.sqft} Trip
           </div>
           <div className="flex items-center font-semibold leading-6">
             <Image
@@ -68,7 +78,7 @@ function BookingSuccess() {
               width={0}
               className="w-5 h-5 mr-1"
             />
-            Max 10 people
+            Max {booking?.listing.max_person} 
           </div>
           <div className="flex items-center font-semibold leading-6">
             <Image
@@ -78,7 +88,8 @@ function BookingSuccess() {
               width={0}
               className="w-5 h-5 mr-1"
             />
-            Free Wifi
+            Free Wifi {booking?.listing.wifi_speed} gbps
+
           </div>
         </div>
 

@@ -18,7 +18,7 @@ function MyListings() {
         <Title
           section='admin'
           title='My Listings'
-          subtitle='Manage your house and get money'
+          subtitle='Manage your travel bookings'
         />
         <Button
           size='button'
