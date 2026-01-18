@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 "use client";
 import { Button } from "@/components/atomics/button";
 import { Checkbox } from "@/components/atomics/checkbox";
